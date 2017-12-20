@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = "_ProjectLayout";
+    ViewData["Title"] = "Index";
+}
+
+<script type="text/javascript" language="javascript">
+    $(function () {
+        var myEl = document.getElementsByName('aUpdate');
+        $(myEl).click(function (e) {
+            
+            e.preventDefault();
+            var _this = $(this);
+            $.get(_this.attr("href"), function (res) {
+                $('#' + _this.data("target")).html(res);
+            });
+
+        });
+
+    });
+</script>
+<h2>Configurations</h2>
+<div class="w3-bar w3-black">
+    <a asp-action="Index" asp-controller="Sessions"  data-target="divConfig" name="aUpdate">Session</a>
+
+    <span style="color:deepskyblue">|</span>
+    <a asp-action="Index" asp-controller="Terms" data-target="divConfig" name="aUpdate">Term</a>
+
+    <span style="color:deepskyblue">|</span>
+    <a asp-action="Index" asp-controller="Schools" data-target="divConfig" name="aUpdate">School</a>
+
+    <span style="color:deepskyblue">|</span>
+    <a asp-action="Index" asp-controller="Classes" data-target="divConfig" name="aUpdate">Class</a>
+
+    <span style="color:deepskyblue">|</span>
+    <a asp-action="Index" asp-controller="Subjects" data-target="divConfig" name="aUpdate">Subject</a>
+
+    <span style="color:deepskyblue">|</span>
+    <a asp-action="Index" asp-controller="StaffSubjects" data-target="divConfig" name="aUpdate">Assign Subject</a>
+
+    <span style="color:deepskyblue">|</span>
+    <a asp-action="ChoseResultType" asp-controller="Configurations" data-target="divConfig" name="aUpdate">Result Settings</a>
+
+    <span style="color:deepskyblue">|</span>
+    <a asp-action="Index" asp-controller="ResultTypes" data-target="divConfig" name="aUpdate">Result Settings</a>
+</div><br/>
+    <div id="divLoading" style="display:none">
+        <img src="~/Images/spiffygif_30x30.gif" />
+    </div>
+    <div id="divConfig">
+        @await  Component.InvokeAsync("SessionCRUD")
+    </div>
+

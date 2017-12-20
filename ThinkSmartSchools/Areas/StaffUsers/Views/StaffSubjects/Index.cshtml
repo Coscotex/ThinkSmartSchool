@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ThinkSmartSchools.Models.StaffSubject>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script type="text/javascript" language="javascript">
+    $(function () {
+        var myEl = document.getElementsByName('aUpdate');
+        $(myEl).click(function (e) {
+
+            e.preventDefault();
+            var _this = $(this);
+            $.get(_this.attr("href"), function (res) {
+                $('#' + _this.data("target")).html(res);
+            });
+
+        });
+
+    });
+</script>
+
+<p>
+    <a asp-action="Create" data-target="divConfig" name="aUpdate" >Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Class.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Staff.LastName) &nbsp; @Html.DisplayFor(modelItem => item.Staff.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" data-target="divConfig" name="aUpdate" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" data-target="divConfig" name="aUpdate" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" data-target="divConfig" name="aUpdate" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

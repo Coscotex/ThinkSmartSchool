@@ -1,0 +1,58 @@
+﻿@model ThinkSmartSchools.Models.ResultType
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<script type="text/javascript" language="javascript">
+    $(function () {
+        var myEl = document.getElementsByName('aUpdate');
+        $(myEl).click(function (e) {
+
+            e.preventDefault();
+            var _this = $(this);
+            $.get(_this.attr("href"), function (res) {
+                $('#' + _this.data("target")).html(res);
+            });
+
+        });
+
+    });
+</script>
+
+<h2>Details</h2>
+
+<div>
+    <h4>ResultType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxScore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaxScore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoOfItems)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoOfItems)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AssessmentType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AssessmentType.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.School)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.School.Logo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" data-target="divConfig" name="aUpdate" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index" data-target="divConfig" name="aUpdate" >Back to List</a>
+</div>
