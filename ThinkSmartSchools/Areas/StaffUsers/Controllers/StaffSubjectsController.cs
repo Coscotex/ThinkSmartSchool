@@ -188,6 +188,7 @@ namespace ThinkSmartSchools.Areas.StaffUsers.Controllers
             return Staff;
         }
 
+        // Get all StaffSubject by Institution
         private async Task<List<StaffSubject>> GetAllByInstitutionAsync()
         {
             // Get current user
